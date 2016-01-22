@@ -8,7 +8,7 @@ int count;
 void setup() {
   tshirt = new PImage[5];
   for ( int i=0; i<tshirt.length; i++) {
-    tshirt[i] = loadImage(i+".jpg");
+    tshirt[i] = loadImage(i+".png");
   }
   count = 0;
   size(600, 400);
@@ -27,8 +27,8 @@ void setup() {
 void draw() {
   update(mouseX, mouseY); 
   background(50);
-  rect(buttonRightX, buttonRightY, buttonSize, buttonSize);
-  rect(buttonLeftX, buttonLeftY, buttonSize, buttonSize);
+  //rect(buttonRightX, buttonRightY, buttonSize, buttonSize);
+  //rect(buttonLeftX, buttonLeftY, buttonSize, buttonSize);
   triangle(buttonRight01X, buttonRight01Y, buttonRight02X, buttonRight02Y, buttonRight03X, buttonRight03Y);
   triangle(buttonLeft01X, buttonLeft01Y, buttonLeft02X, buttonLeft02Y, buttonLeft03X, buttonLeft03Y);
   image(tshirt[count], width/2-100, height/2-100);
@@ -43,6 +43,18 @@ void draw() {
 }
 
 void update(int x, int y) {
+  if (overRightButton(buttonRight01X, buttonRight01Y, buttonRight02X, buttonRight02Y, buttonRight03X, buttonRight03Y)) {
+    rightButtonOver = true;
+    leftButtonOver = false;
+  } else if (overLeftButton(buttonLeft01X, buttonLeft01Y, buttonLeft02X, buttonLeft02Y, buttonLeft03X, buttonLeft03Y)) {
+    leftButtonOver = true;
+    rightButtonOver = false;
+  } else {
+    leftButtonOver = rightButtonOver = false;
+  }
+}
+
+/*void update(int x, int y) {
   if (overRightButton(buttonRightX, buttonRightY, buttonSize, buttonSize)) {
     rightButtonOver = true;
     leftButtonOver = false;
@@ -52,7 +64,7 @@ void update(int x, int y) {
   } else {
     leftButtonOver = rightButtonOver = false;
   }
-}
+}*/
 
 void mousePressed() {
   if (rightButtonOver) {
@@ -66,7 +78,7 @@ void mousePressed() {
   }
 }
 
-boolean overRightButton(int x, int y, int width, int height) {
+boolean overRightButton(int x, int y, int x1, int y1, int x2, int y2) {
   if (mouseX >= x && mouseX <= x+width && 
     mouseY >= y && mouseY <= y+height) {
     return true;
@@ -75,7 +87,7 @@ boolean overRightButton(int x, int y, int width, int height) {
   }
 }
 
-boolean overLeftButton(int x, int y, int width, int height) {
+boolean overLeftButton(int x, int y, int x1, int y1, int x2, int y2) {
   if (mouseX >= x && mouseX <= x+width && 
     mouseY >= y && mouseY <= y+height) {
     return true;
