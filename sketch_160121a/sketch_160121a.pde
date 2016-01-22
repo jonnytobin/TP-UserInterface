@@ -1,3 +1,6 @@
+PImage [] tshirt;
+int count;
+
 void setup() {
   size(600, 400);
   background(200);
@@ -5,6 +8,14 @@ void setup() {
 }
 
 void draw() {
+   tshirt = new PImage[5];
+   tshirt[0] = loadImage("Images/tshirt01.jpg");
+   tshirt[1] = loadImage("Images/tshirt02.jpg");
+   tshirt[2] = loadImage("Images/tshirt03.jpg");
+   tshirt[3] = loadImage("Images/tshirt04.jpg");
+   tshirt[4] = loadImage("Images/tshirt05.jpg");
+  
+  
    ellipse(width/2, 73, 55, 55);
    rect(width/2-45, height/2-100, 90, 150);
    rect(width/2-45, height/2+20, 90, 150);
