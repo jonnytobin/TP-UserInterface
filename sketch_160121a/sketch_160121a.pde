@@ -16,10 +16,23 @@ void setup() {
   size(600, 400);
   background(50);
   smooth();
-  buttonLeftX = 30;
-  buttonLeftY = 300;
-  buttonRightX = width-30;
-  buttonRightY = 300;
+  //buttonLeftX = 30;
+  //buttonLeftY = 300;
+  //buttonRightX = width-30;
+  //buttonRightY = 300;
+  buttonRight01X = width-30;
+  buttonRight01Y = 225;
+  buttonRight02X = width-30;
+  buttonRight02Y = 170;
+  buttonRight03X = width-15;
+  buttonRight03Y = 197;
+  
+  buttonLeft01X = 30;
+  buttonLeft01Y = 225;
+  buttonLeft02X = 30;
+  buttonLeft02Y = 170;
+  buttonLeft03X = 15;
+  buttonLeft03Y = 197;
 }
 
 void draw() {
@@ -29,8 +42,8 @@ void draw() {
   triangle(buttonLeft01X, buttonLeft01Y, buttonLeft02X, buttonLeft02Y, buttonLeft03X, buttonLeft03Y);
   image(tshirt[count], width/2-100, height/2-100);
   noStroke();
-  triangle(30, 225, 30, 170, 15, 197);
-  triangle(width-30, 225, width-30, 170, width-15, 197);
+  //triangle(30, 225, 30, 170, 15, 197);
+  //triangle(width-30, 225, width-30, 170, width-15, 197);
 }
 
 void update(int x, int y) {
