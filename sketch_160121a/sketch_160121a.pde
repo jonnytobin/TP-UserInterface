@@ -5,7 +5,7 @@ int buttonSize = 20;
 int buttonRightX, buttonRightY, buttonLeftX, buttonLeftY;
 int buttonRight01X, buttonRight01Y, buttonRight02X, buttonRight02Y, buttonRight03X, buttonRight03Y, buttonLeft01X, buttonLeft01Y, buttonLeft02X, buttonLeft02Y, buttonLeft03X, buttonLeft03Y;
 int count;
-
+Spout spout;
 
 void setup() {
   tshirt = new PImage[5];
@@ -13,7 +13,7 @@ void setup() {
     tshirt[i] = loadImage(i+".png");
   }
   count = 0;
-  size(600, 400);
+  size(600, 400, OPENGL);
   background(50);
   smooth();
   //buttonLeftX = 30;
@@ -33,17 +33,25 @@ void setup() {
   buttonLeft02Y = 170;
   buttonLeft03X = 15;
   buttonLeft03Y = 197;
+  
+  // CREATE A NEW SPOUT OBJECT HERE
+  spout = new Spout();
+
+  // INITIALIZE A SPOUT SENDER HERE
+  spout.initSender("Spout Processing", width, height);
 }
 
 void draw() {
   update(mouseX, mouseY); 
-  background(50);
+  background(0);
   triangle(buttonRight01X, buttonRight01Y, buttonRight02X, buttonRight02Y, buttonRight03X, buttonRight03Y);
   triangle(buttonLeft01X, buttonLeft01Y, buttonLeft02X, buttonLeft02Y, buttonLeft03X, buttonLeft03Y);
   image(tshirt[count], width/2-100, height/2-100);
   noStroke();
   //triangle(30, 225, 30, 170, 15, 197);
   //triangle(width-30, 225, width-30, 170, width-15, 197);
+  // SEND A SHARED TEXTURE HERE
+  spout.sendTexture();
 }
 
 void update(int x, int y) {
@@ -87,3 +95,10 @@ boolean overLeftButton(int x, int y, int x1, int y1, int x2, int y2) {
     return false;
   }
 }
+
+// over-ride exit to release sharing
+void exit() {
+  // CLOSE THE SPOUT SENDER HERE
+  spout.closeSender();
+  super.exit();
+} 
