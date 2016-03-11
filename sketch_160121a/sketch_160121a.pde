@@ -1,4 +1,5 @@
-PImage [] tshirt;
+import processing.video.*;
+Movie [] tshirt;
 boolean rightButtonOver = false;
 boolean leftButtonOver = false;
 int buttonSize = 20;
@@ -8,9 +9,10 @@ int count;
 Spout spout;
 
 void setup() {
-  tshirt = new PImage[3];
+  tshirt = new Movie[3];
   for ( int i=0; i<tshirt.length; i++) {
-    tshirt[i] = loadImage(i+".png");
+    tshirt[i] = new Movie(this, i+".mp4");
+    tshirt[i].play();
   }
   count = 0;
   size(600, 400, OPENGL);
@@ -39,6 +41,10 @@ void setup() {
 
   // INITIALIZE A SPOUT SENDER HERE
   spout.initSender("Spout Processing", width, height);
+}
+
+void movieEvent(Movie m) {
+  m.read();
 }
 
 void draw() {
