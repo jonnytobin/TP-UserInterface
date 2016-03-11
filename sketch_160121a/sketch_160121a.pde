@@ -1,5 +1,6 @@
 import processing.video.*;
-Movie [] tshirt;
+//String[] movieNames = { "0.mov", "1.mov", "2.mov" }; 
+Movie[] tshirt;
 boolean rightButtonOver = false;
 boolean leftButtonOver = false;
 int buttonSize = 20;
@@ -10,12 +11,17 @@ Spout spout;
 
 void setup() {
   tshirt = new Movie[3];
-  for ( int i=0; i<tshirt.length; i++) {
-    tshirt[i] = new Movie(this, i+".mp4");
-    tshirt[i].play();
-  }
+  tshirt[0] = new Movie(this, "0.mov");
+  tshirt[1] = new Movie(this, "1.mov");
+  tshirt[2] = new Movie(this, "2.mov");
+  //for ( int i=0; i<movieNames.length; i++) {
+    //print(movieNames.length);
+    //tshirt[i] = new Movie(this, movieNames[i]);
+    //tshirt[i].play();
+    //print("test");
+  //}
   count = 0;
-  size(600, 400, OPENGL);
+  size(600, 400);
   background(0, 0);
   smooth();
   //buttonLeftX = 30;
