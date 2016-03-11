@@ -8,13 +8,13 @@ int count;
 Spout spout;
 
 void setup() {
-  tshirt = new PImage[5];
+  tshirt = new PImage[3];
   for ( int i=0; i<tshirt.length; i++) {
     tshirt[i] = loadImage(i+".png");
   }
   count = 0;
   size(600, 400, OPENGL);
-  background(50);
+  background(0, 0);
   smooth();
   //buttonLeftX = 30;
   //buttonLeftY = 300;
@@ -43,7 +43,7 @@ void setup() {
 
 void draw() {
   update(mouseX, mouseY); 
-  background(0);
+  background(0, 0);
   triangle(buttonRight01X, buttonRight01Y, buttonRight02X, buttonRight02Y, buttonRight03X, buttonRight03Y);
   triangle(buttonLeft01X, buttonLeft01Y, buttonLeft02X, buttonLeft02Y, buttonLeft03X, buttonLeft03Y);
   image(tshirt[count], width/2-100, height/2-100);
