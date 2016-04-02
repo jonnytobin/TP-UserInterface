@@ -1,5 +1,5 @@
 import processing.video.*;
-//String[] movieNames = { "0.mov", "1.mov", "2.mov" }; 
+String[] movieNames = { "0.mov", "1.mov", "2.mov" }; 
 Movie[] tshirt;
 boolean rightButtonOver = false;
 boolean leftButtonOver = false;
@@ -11,17 +11,17 @@ Spout spout;
 
 void setup() {
   tshirt = new Movie[3];
-  tshirt[0] = new Movie(this, "0.mov");
-  tshirt[1] = new Movie(this, "1.mov");
-  tshirt[2] = new Movie(this, "2.mov");
-  //for ( int i=0; i<movieNames.length; i++) {
-    //print(movieNames.length);
-    //tshirt[i] = new Movie(this, movieNames[i]);
-    //tshirt[i].play();
-    //print("test");
-  //}
+  //tshirt[0] = new Movie(this, "0.mov");
+  //tshirt[1] = new Movie(this, "1.mov");
+  //tshirt[2] = new Movie(this, "2.mov");
+  for ( int i=0; i<movieNames.length; i++) {
+    print(movieNames.length);
+    tshirt[i] = new Movie(this, movieNames[i]);
+    print("test");
+  }
   count = 0;
-  size(600, 400);
+  //tshirt[count].play();
+  size(600, 400, OPENGL);
   background(0, 0);
   smooth();
   //buttonLeftX = 30;
@@ -58,12 +58,13 @@ void draw() {
   background(0, 0);
   triangle(buttonRight01X, buttonRight01Y, buttonRight02X, buttonRight02Y, buttonRight03X, buttonRight03Y);
   triangle(buttonLeft01X, buttonLeft01Y, buttonLeft02X, buttonLeft02Y, buttonLeft03X, buttonLeft03Y);
-  image(tshirt[count], width/2-100, height/2-100);
+  image(tshirt[count], 150, 100, width/2, height/2);
   noStroke();
   //triangle(30, 225, 30, 170, 15, 197);
   //triangle(width-30, 225, width-30, 170, width-15, 197);
   // SEND A SHARED TEXTURE HERE
   spout.sendTexture();
+  //print(tshirt[count]);
 }
 
 void update(int x, int y) {
@@ -80,12 +81,16 @@ void update(int x, int y) {
 
 void mousePressed() {
   if (rightButtonOver) {
+    tshirt[count].stop();
+    tshirt[count].play();
     count = (count+1)%tshirt.length;
   }
   if (leftButtonOver) {
-    count--; 
-    if (count < 0) { 
+    count--;
+    if (count < 0) {
       count = tshirt.length-1;
+      tshirt[count].stop();
+      tshirt[count].play();
     }
   }
 }
