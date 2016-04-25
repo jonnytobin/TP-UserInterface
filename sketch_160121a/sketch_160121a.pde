@@ -1,5 +1,5 @@
 import processing.video.*;
-String[] movieNames = { "0.mov", "1.mov", "2.mov" }; 
+String[] movieNames = { "0.mov", "1.mov", "2.mov", "3.mov", "4.mov", "5.mov", "6.mov", "7.mov"}; 
 Movie[] tshirt;
 boolean rightButtonOver = false;
 boolean leftButtonOver = false;
@@ -10,7 +10,7 @@ int count;
 Spout spout;
 
 void setup() {
-  tshirt = new Movie[3];
+  tshirt = new Movie[8];
   //tshirt[0] = new Movie(this, "0.mov");
   //tshirt[1] = new Movie(this, "1.mov");
   //tshirt[2] = new Movie(this, "2.mov");
@@ -20,8 +20,8 @@ void setup() {
     print("test");
   }
   count = 0;
-  //tshirt[count].play();
-  size(600, 400, OPENGL);
+  tshirt[count].play();
+  size(960, 540, OPENGL);
   background(0, 0);
   smooth();
   //buttonLeftX = 30;
@@ -29,18 +29,18 @@ void setup() {
   //buttonRightX = width-30;
   //buttonRightY = 300;
   buttonRight01X = width-30;
-  buttonRight01Y = 225;
+  buttonRight01Y = 290;
   buttonRight02X = width-30;
-  buttonRight02Y = 170;
+  buttonRight02Y = 250;
   buttonRight03X = width-15;
-  buttonRight03Y = 197;
+  buttonRight03Y = 270;
   
   buttonLeft01X = 30;
-  buttonLeft01Y = 225;
+  buttonLeft01Y = 290;
   buttonLeft02X = 30;
-  buttonLeft02Y = 170;
+  buttonLeft02Y = 250;
   buttonLeft03X = 15;
-  buttonLeft03Y = 197;
+  buttonLeft03Y = 270;
   
   // CREATE A NEW SPOUT OBJECT HERE
   spout = new Spout();
@@ -56,9 +56,10 @@ void movieEvent(Movie m) {
 void draw() {
   update(mouseX, mouseY); 
   background(0, 0);
+  image(tshirt[count], 0, 0, width, height);
   triangle(buttonRight01X, buttonRight01Y, buttonRight02X, buttonRight02Y, buttonRight03X, buttonRight03Y);
   triangle(buttonLeft01X, buttonLeft01Y, buttonLeft02X, buttonLeft02Y, buttonLeft03X, buttonLeft03Y);
-  image(tshirt[count], 150, 100, width/2, height/2);
+  
   noStroke();
   //triangle(30, 225, 30, 170, 15, 197);
   //triangle(width-30, 225, width-30, 170, width-15, 197);
